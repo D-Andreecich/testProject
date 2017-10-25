@@ -31,3 +31,8 @@ html, body {
 .m-b-md {
     margin-bottom: 30px;
 }
+
+.btn-default {
+
+    border-color: #2ca02c;
+}

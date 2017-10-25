@@ -12,27 +12,32 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
+
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+
     <script
-            src="http://code.jquery.com/jquery-3.2.1.js"
-            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    src="http://code.jquery.com/jquery-3.2.1.js"
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
     crossorigin="anonymous"></script>
     <script src="{{ asset('js/test.js') }}"></script>
+    <script src="{{ asset('js/jquery.tablesorter.min.js') }}"></script>
 
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url('/') }}">Home</a>
+                <a class="navbar-brand" href="{{ url('/') }}">Page test</a>
             </div>
-            <ul class="nav navbar-nav">
-                <li><a href="{{ route('testing') }}">Page test</a></li>
-            </ul>
         </div>
     </nav>
 

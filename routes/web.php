@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('testing', 'test\TestController@show')->name('testing');
+Route::get('/', 'test\TestController@show')->name('testing');
 Route::get('testget', 'test\TestController@getDataGet');
 Route::post('testpost', 'test\TestController@getDataPost');
+Route::post('result', 'test\TestController@getResult');
+Route::get('adminDrop', 'test\TestController@adminDrop');

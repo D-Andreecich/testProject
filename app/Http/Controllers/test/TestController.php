@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\RestClient;
 use App\Http\Controllers\RestClientException;
+use Illuminate\Database\Eloquent\Collection;
 
 //require (__DIR__ . '/../../../RestClient.php');
 
@@ -39,6 +40,12 @@ class TestController extends Controller
         return view('test.test');
     }
 
+    public function getResult()
+    {
+        $result = DataForSEO::all();
+        echo json_encode($result);
+    }
+
     public function getDataGet(Request $request)
     {
         $client = $this->authGo();
@@ -49,13 +56,14 @@ class TestController extends Controller
             // GET /api/v1/tasks_get/$task_id
             $task_get_result = $client->get('v2/rnk_tasks_get/' . $request->task_id);
 
-            $this->createRecordToDB($task_get_result['results']['organic']);
-
-            $result =DataForSEO::all();
-            echo json_encode($result);
+            if ($task_get_result['status'] === 'ok' && $task_get_result['results_count'] != '0') {
+                $this->createRecordToDB($task_get_result['results']['organic']);
+                echo 'ok  [ task_id ]';
+            } else {
+                echo 'error [ task_id ]';
+            }
 
             //do something with result
-
         } catch (RestClientException $e) {
             echo "\n";
             print "HTTP code: {$e->getHttpCode()}\n";
@@ -90,14 +98,13 @@ class TestController extends Controller
                 // POST /v2/rnk_tasks_post/$data
 //                 $tasks_data must by array with key 'data'
                 $task_post_result = $client->post('v2/rnk_tasks_post', array('data' => $post_array));
+                if ($task_post_result['status'] === 'ok') {
+                    $this->createRecordToDB($task_post_result['results']);
+                }
 
-                $this->createRecordToDB($task_post_result['results']);
-
-                $result =DataForSEO::all();
-                echo json_encode($result);
+                echo $task_post_result['status'] . ' [ Test post ]';
 
                 //do something with post results
-
             } catch (RestClientException $e) {
                 echo "\n";
                 print "HTTP code: {$e->getHttpCode()}\n";
@@ -116,7 +123,7 @@ class TestController extends Controller
         foreach ($task_result as $result) {
 
             $data = DataForSEO::where('task_id', $result['task_id'])->first();
-            if($data){
+            if ($data) {
                 $data->post_key = $result['post_key'] ?? '';
                 $data->result_datetime = $result['result_datetime'] ?? '';
                 $data->result_position = $result['result_position'] ?? 0;
@@ -129,8 +136,9 @@ class TestController extends Controller
                 $data->result_spell = $result['result_spell'] ?? '';
                 $data->result_se_check_url = $result['result_se_check_url'] ?? '';
                 $data->save();
-            }else {
+            } else {
                 $data = new DataForSEO();
+                $data->id = $result['post_id'] ?? 0;
                 $data->post_id = $result['post_id'] ?? 0;
                 $data->task_id = $result['task_id'] ?? 0;
                 $data->se_id = $result['se_id'] ?? 0;
@@ -165,6 +173,13 @@ class TestController extends Controller
             }*/
         }
 
+    }
+
+    protected function adminDrop()
+    {
+        DataForSEO::getQuery()->delete();
+        DataJSONb::getQuery()->delete();
+        return redirect()->route('testing');
     }
 
 }

@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', 'test\TestController@show')->name('testing');
-Route::get('testget', 'test\TestController@getDataGet');
-Route::post('testpost', 'test\TestController@getDataPost');
-Route::post('result', 'test\TestController@getResult');
-Route::get('adminDrop', 'test\TestController@adminDrop');
+Route::get('/', 'Banks\BanksShow')->name('show');
+Route::post('/addBanks', 'Banks\BanksAdd@add');
+Route::post('/getBanks', 'Banks\BanksGet@getBanks');
+Route::post('/delBanks', 'Banks\BanksDel@delBanks');
+Route::post('/editBanks', 'Banks\BanksEdit@editBanks');
+//Route::get('adminDrop', 'test\TestController@adminDrop');

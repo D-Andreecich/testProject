@@ -12,79 +12,101 @@
         </div>
 
         <div id="trigger" class="panel panel-success">
-            <div id="results" class="panel-heading">Совет: Для удобства начните с первой проверки ("Test post")</div>
+            <div id="results" class="panel-heading">Статус: Ожидание действий</div>
         </div>
+
         <div class="panel-body">
-            <div class="form-group">
-                <label for="site" class="col-md-4 control-label">Site:</label>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="address_bank" class="col-md-4 control-label">Адрес:</label>
 
-                <div class="col-md-6">
-                    <input id="site" type="text" class="form-control" name="site" value="ranksonic.com" required
-                           autofocus>
+                    <div class="col-md-6">
+                        <input id="address_bank" type="text" class="form-control" name="address_bank"
+                               value=""
+                               placeholder="London,England,United Kingdom"
+                               onfocus="startAutocomplete()" required>
+                    </div>
+
                 </div>
-            </div>
 
 
-            <div class="form-group">
-                <label for="se_name" class="col-md-4 control-label">Search engine domain:</label>
+                <div class="form-group">
+                    <label for="name_personal" class="col-md-4 control-label">Имя персонала:</label>
 
-                <div class="col-md-6">
-                    <input id="se_name" type="text" class="form-control" name="se_name" value="google.co.uk" required>
+                    <div class="col-md-6">
+                        <div>
+                            <input id="name_personal" type="text" name="name_personal" class="form-control"
+                                   value="" placeholder="Фамилия Имя Отчество" required>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="se_language" class="col-md-4 control-label">Search engine language:</label>
+                <div class="form-group">
+                    <label for="rating_bank" class="col-md-4 control-label">Обслуживание в банке:</label>
 
-                <div class="col-md-6">
-                    <select id="se_language" name="se_language" class="selectpicker form-control" required>
-                        <option></option>
-                        <option selected>English</option>
-                        <option>Russian</option>
-                    </select>
+                    <div class="col-md-6">
+                        <div class="form-control">
+                            <input id="rating_bank" name="rating_bank" type="hidden" class="rating" value="0"/>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="loc_name_canonical" class="col-md-4 control-label">Full name of search engine
-                    location:</label>
+                <div class="form-group">
+                    <label for="rating_atm" class="col-md-4 control-label">Обслуживание в банкомате:</label>
 
-                <div class="col-md-6">
-                    <input id="loc_name_canonical" type="text" class="form-control" name="loc_name_canonical"
-                           value="London,England,United Kingdom"
-                           onfocus="startAutocomplete()" required>
+                    <div class="col-md-6">
+                        <div class="form-control">
+                            <input id="rating_atm" name="rating_atm" type="hidden" class="rating" value="0"/>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="key" class="col-md-4 control-label">Keyword:</label>
+                <div class="form-group">
+                    <label for="rating_pb24" class="col-md-4 control-label">Обслуживание в Приват24:</label>
 
-                <div class="col-md-6">
-                    <input id="key" type="text" class="form-control" name="key" value="online rank checker" required>
+                    <div class="col-md-6">
+                        <div class="form-control">
+                            <input id="rating_pb24" name="rating_pb24" type="hidden" class="rating" value="0"/>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                    <button data-id="testpost" type="button" class="btn btn-primary">Test post</button>
+                <div class="form-group">
+                    <label for="startWork" class="col-md-4 control-label">Время начала обстуживания</label>
+
+                    <div class="col-md-6">
+
+                        <div id="datetimepicker1" class="input-append date input-group">
+                            <input id="startWork" type="text" class="form-control" placeholder="2018-01-01 00:00:00" required/>
+                            <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </span>
+                        </div>
+                    </div>
                 </div>
-                <br>
-                <br>
-            </div>
-        </div>
-        <div class="panel-body">
-            <div class="form-group">
-                <label for="task_id_input" class="col-md-4 control-label">task_id:</label>
-                <div class="col-md-6">
-                    <input  id="task_id_input" type="text" name="task_id" class="form-control" placeholder="Введите значение или выбирите из списка ниже" required>
-                    <select id="task_id_select" class="selectpicker form-control">
-                        <option></option>
-                    </select>
+
+                <div class="form-group">
+                    <label for="endWork" class="col-md-4 control-label">Время окончания обстуживания</label>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker2'>
+                                <input id="endWork" type='text' class="form-control" placeholder="2018-01-01 00:00:00" required/>
+                                <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-md-offset-4">
-                <button data-id="testget" type="button" class="btn btn-primary">Test get</button>
-            </div>
+
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-4">
+                            <button id="editGo" type="submit" class="btn btn-primary" style="display: none">Редактировать отзыв</button>
+                            <button id="addGo" type="submit" class="btn btn-primary" style="display: inline">Добавить отзыв</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 

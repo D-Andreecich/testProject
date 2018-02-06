@@ -14,6 +14,7 @@
 Route::get('/', 'Banks\BanksShow')->name('show');
 Route::post('/addBanks', 'Banks\BanksAdd@add');
 Route::post('/getBanks', 'Banks\BanksGet@getBanks');
+Route::get('/getBanks', 'Banks\BanksGet@getBanks');
 Route::post('/delBanks', 'Banks\BanksDel@delBanks');
 Route::post('/editBanks', 'Banks\BanksEdit@editBanks');
 //Route::get('adminDrop', 'test\TestController@adminDrop');

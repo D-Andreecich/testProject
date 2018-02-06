@@ -17,15 +17,15 @@ $(document).ready(function () {
 
     getResults();
 
-    $("form").submit(function(event){
+    $("form").submit(function (event) {
         event.preventDefault();
     });
 
-    $("#addGo").click(function(){
+    $("#addGo").click(function () {
         dataTest();
     });
 
-    $("#editGo").click(function(){
+    $("#editGo").click(function () {
         editBanks($idBank);
     });
 
@@ -56,7 +56,7 @@ function dataTest() {
 
     $.ajax({
         type: 'POST',
-        url: '/addBanks',
+        url: 'addBanks',
         data: data,
         headers: {
             'X-CSRF-TOKEN': $token
@@ -78,7 +78,7 @@ function dataTest() {
     });
 }
 
-function editBanks(id){
+function editBanks(id) {
     let address_bank = document.getElementById('address_bank').value;
     let name_personal = document.getElementById('name_personal').value;
     let rating_bank = +document.getElementById('rating_bank').value;
@@ -100,9 +100,10 @@ function editBanks(id){
 
     $.ajax({
         type: 'POST',
-        url: '/editBanks',
+        url: 'editBanks',
         data: data,
         headers: {
+            "Content-Type":"application/json",
             'X-CSRF-TOKEN': $token
         }
     }).done(function (data) {
@@ -141,6 +142,7 @@ function getResults() {
         url: 'getBanks',
         dataType: 'json',
         headers: {
+            "Content-Type":"application/json",
             'X-CSRF-TOKEN': $token
         },
     }).done(function (data) {
@@ -153,16 +155,16 @@ function getResults() {
                 tbody += '<tr>';
                 for (let j in data[i]) {
                     if (i == 0) {
-                        thead += '<th id="' + j + '_id'+'" class="btn-default" style="white-space:nowrap;">' + '<i class="glyphicon glyphicon-sort-by-attributes"></i> ' + j + '</th>';
+                        thead += '<th id="' + j + '_id' + '" class="btn-default" style="white-space:nowrap;">' + '<i class="glyphicon glyphicon-sort-by-attributes"></i> ' + j + '</th>';
                     }
                     tbody += '<th>' + data[i][j] + '</th>';
                 }
                 tbody += '<th>' +
-                    '<button type="button" id="editBank" onclick="editBank(this.value)" value="'+data[i].id +'" class="btn btn-default" aria-label="Left Align">'+
-                    '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'+
-                    '</button>'+
-                    '<button type="button" id="delBank" onclick="dellBank(this.value)" value="'+data[i].id +'" class="btn btn-default" aria-label="Left Align">'+
-                    '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'+
+                    '<button type="button" id="editBank" onclick="editBank(this.value)" value="' + data[i].id + '" class="btn btn-default" aria-label="Left Align">' +
+                    '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>' +
+                    '</button>' +
+                    '<button type="button" id="delBank" onclick="dellBank(this.value)" value="' + data[i].id + '" class="btn btn-default" aria-label="Left Align">' +
+                    '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' +
                     '</button>' +
                     '</th>';
                 tbody += '</tr>';
@@ -178,11 +180,11 @@ function getResults() {
         $("table").tablesorter();
     });
 }
-function dellBank(id){
+function dellBank(id) {
     $.ajax({
         type: 'POST',
-        url: '/delBanks',
-        data: {'id':id},
+        url: 'delBanks',
+        data: {'id': id},
         headers: {
             'X-CSRF-TOKEN': $token
         },
@@ -203,9 +205,11 @@ function dellBank(id){
     });
 }
 
-function editBank(id){
+function editBank(id) {
     $idBank = id;
- let data = $.grep($result, function(e){ return e.id == id; })[0];
+    let data = $.grep($result, function (e) {
+        return e.id == id;
+    })[0];
     document.getElementById('address_bank').value = data.address_bank;
     document.getElementById('name_personal').value = data.name_personal;
     document.getElementById('rating_bank').value = data.rating_bank;
@@ -213,8 +217,8 @@ function editBank(id){
     document.getElementById('rating_pb24').value = data.rating_pb24;
     document.getElementById('startWork').value = data.startWork;
     document.getElementById('endWork').value = data.endWork;
-$('#addGo').css('display', 'none');
-$('#editGo').css('display', 'inline');
+    $('#addGo').css('display', 'none');
+    $('#editGo').css('display', 'inline');
 }
 
 function startAutocomplete() {

@@ -35,12 +35,16 @@
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
 
     <script src="{{ asset('js/test.js') }}"></script>
+    <script src="{{ asset('js/file.js') }}"></script>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url('/') }}">Page lab1</a>
+                <a class="navbar-brand" href="{{ url('/') }}">Робота з БД</a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ url('/file') }}">Робота з файлом</a>
             </div>
         </div>
     </nav>

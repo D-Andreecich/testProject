@@ -12,13 +12,13 @@
         </div>
 
         <div id="trigger" class="panel panel-success">
-            <div id="results" class="panel-heading">Статус: Ожидание действий</div>
+            <div id="results" class="panel-heading">Статус: Очікування дій</div>
         </div>
 
         <div class="panel-body">
-            <form method="POST">
+            <form method="POST" id="formTabl">
                 <div class="form-group">
-                    <label for="address_bank" class="col-md-4 control-label">Адрес:</label>
+                    <label for="address_bank" class="col-md-4 control-label">Адреса:</label>
 
                     <div class="col-md-6">
                         <input id="address_bank" type="text" class="form-control" name="address_bank"
@@ -31,18 +31,18 @@
 
 
                 <div class="form-group">
-                    <label for="name_personal" class="col-md-4 control-label">Имя персонала:</label>
+                    <label for="name_personal" class="col-md-4 control-label">Ім'я персоналу:</label>
 
                     <div class="col-md-6">
                         <div>
                             <input id="name_personal" type="text" name="name_personal" class="form-control"
-                                   value="" placeholder="Фамилия Имя Отчество" required>
+                                   value="" placeholder="Прізвище ім'я по батькові" required>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="rating_bank" class="col-md-4 control-label">Обслуживание в банке:</label>
+                    <label for="rating_bank" class="col-md-4 control-label">Обслуговування в банку:</label>
 
                     <div class="col-md-6">
                         <div class="form-control">
@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="rating_atm" class="col-md-4 control-label">Обслуживание в банкомате:</label>
+                    <label for="rating_atm" class="col-md-4 control-label">Обслуговування в банкоматі:</label>
 
                     <div class="col-md-6">
                         <div class="form-control">
@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="rating_pb24" class="col-md-4 control-label">Обслуживание в Приват24:</label>
+                    <label for="rating_pb24" class="col-md-4 control-label">Обслуговування в Приват24:</label>
 
                     <div class="col-md-6">
                         <div class="form-control">
@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="startWork" class="col-md-4 control-label">Время начала обстуживания</label>
+                    <label for="startWork" class="col-md-4 control-label">Час початку обслуговування:</label>
 
                     <div class="col-md-6">
 
@@ -86,7 +86,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="endWork" class="col-md-4 control-label">Время окончания обстуживания</label>
+                    <label for="endWork" class="col-md-4 control-label">Час закінчення обслуговування:</label>
 
                     <div class="col-md-6">
                         <div class="form-group">
@@ -102,8 +102,8 @@
 
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
-                            <button id="editGo" type="submit" class="btn btn-primary" style="display: none">Редактировать отзыв</button>
-                            <button id="addGo" type="submit" class="btn btn-primary" style="display: inline">Добавить отзыв</button>
+                            <button id="editGo" type="submit" class="btn btn-primary" style="display: none">Редагувати відгук</button>
+                            <button id="addGo" type="submit" class="btn btn-primary" style="display: inline">Додати відгук</button>
                     </div>
                 </div>
             </form>
@@ -112,6 +112,6 @@
 
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQGiP-8aFcyPivJHoP1NIi2VKYd4I8BLQ&libraries=places"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA7XJG_r0qNPxw0hIWZH6O2JX-m_mnqBo&libraries=places&language=ua&region=UA"
             async defer></script>
 @endsection

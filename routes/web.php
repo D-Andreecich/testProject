@@ -13,8 +13,18 @@
 
 Route::get('/', 'Banks\BanksShow')->name('show');
 Route::post('/addBanks', 'Banks\BanksAdd@add');
-Route::post('/getBanks', 'Banks\BanksGet@getBanks');
+Route::any('/getBanks', 'Banks\BanksGet@getBanks');
 Route::get('/getBanks', 'Banks\BanksGet@getBanks');
+Route::get('/file', 'File\FileForm');
+Route::get('/migrate', function () {
+    Artisan::call('migrate', [
+        '--force' => true,
+    ]);
+});
+Route::post('/fileAdd', 'File\FileAdd');
 Route::post('/delBanks', 'Banks\BanksDel@delBanks');
 Route::post('/editBanks', 'Banks\BanksEdit@editBanks');
 //Route::get('adminDrop', 'test\TestController@adminDrop');
+Route::get('/404', function () {
+    return view('404.404');
+})->name('404');

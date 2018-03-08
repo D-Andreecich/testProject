@@ -14,25 +14,26 @@ $(document).ready(function () {
     $result = {};
     $idBank = null;
     $token = $('meta[name="csrf-token"]').attr('content');
-    $func = '';
-    $('#formTabl').submit(function (event) {
-        $func($idBank);
-        event.preventDefault();
-    });
-    $("#addGo").on('click',function () {
-        $func = dataTest;
-    });
-
-    $("#editGo").on('click',function () {
-        $func = editBanks;
-    });
 
     getResults();
+
+    $("form").submit(function (event) {
+        event.preventDefault();
+    });
+
+    $("#addGo").click(function () {
+        dataTest();
+    });
+
+    $("#editGo").click(function () {
+        editBanks($idBank);
+    });
 
     $("#task_id_select").click(function () {
         $("#task_id_input").val($(this).val());
     });
 });
+
 
 function dataTest() {
     let address_bank = document.getElementById('address_bank').value;
@@ -102,6 +103,7 @@ function editBanks(id) {
         url: 'editBanks',
         data: data,
         headers: {
+            "Content-Type":"application/json",
             'X-CSRF-TOKEN': $token
         }
     }).done(function (data) {
@@ -140,7 +142,7 @@ function getResults() {
         url: 'getBanks',
         dataType: 'json',
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type":"application/json",
             'X-CSRF-TOKEN': $token
         },
     }).done(function (data) {
@@ -220,7 +222,7 @@ function editBank(id) {
 }
 
 function startAutocomplete() {
-    let autocomplete = new google.maps.places.Autocomplete((document.getElementById('address_bank')), {types: ['geocode']});
+    let autocomplete = new google.maps.places.Autocomplete((document.getElementById('loc_name_canonical')), {types: ['geocode']});
 }
 
 function changeClass(id) {

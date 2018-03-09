@@ -46,9 +46,12 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="{{ url('/file') }}">Робота з файлом</a>
             </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ url('/score') }}">Магазин</a>
+            </div>
         </div>
     </nav>
 
-    @yield('content')
+        @yield('content')
 </body>
 </html>

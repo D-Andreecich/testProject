@@ -25,6 +25,9 @@ Route::post('/fileAdd', 'File\FileAdd');
 Route::post('/delBanks', 'Banks\BanksDel@delBanks');
 Route::post('/editBanks', 'Banks\BanksEdit@editBanks');
 //Route::get('adminDrop', 'test\TestController@adminDrop');
+Route::get('/score', function () {
+    return view('score.frameScore');
+})->name('404');
 Route::get('/404', function () {
     return view('404.404');
 })->name('404');
